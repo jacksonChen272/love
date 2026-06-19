@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>蠻牛 ❤️ 寶寶 ｜ 一周年紀念故事</title>
+    <meta name="description" content="蠻牛與寶寶的一周年紀念網站 - 記錄我們在一起的每一秒，還有滿滿的回憶與戀愛闖關遊戲。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Glow Effects -->
+    <div class="bg-glow-container">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+        <div class="bg-glow glow-3"></div>
+    </div>
+    
+    <!-- Hearts Rain Canvas -->
+    <canvas id="heartsCanvas"></canvas>
+
+    <!-- Global Reset Button -->
+    <button id="resetProgressBtn" class="floating-reset-btn" title="重新開始我們的故事">
+        <i class="fas fa-undo-alt"></i>
+    </button>
+
+    <!-- Easter Egg counter (floating widget) -->
+    <div id="easterEggWidget" class="easter-egg-widget hidden">
+        <span class="egg-icon">💖</span>
+        <span id="eggCount">0</span>/10
+    </div>
+
+    <!-- Chapter 1: Netflix Opening -->
+    <section id="chapter-intro" class="chapter active">
+        <div class="netflix-intro-container">
+            <!-- N Logo Animation Effect -->
+            <div class="netflix-n-logo">
+                <span class="n-bar n-left"></span>
+                <span class="n-bar n-middle"></span>
+                <span class="n-bar n-right"></span>
+            </div>
+            
+            <div class="netflix-meta">
+                <span class="meta-tag font-outfit">LOVE STORY</span>
+                <span class="meta-divider">|</span>
+                <span class="meta-season font-outfit">Season 1</span>
+                <span class="meta-divider">|</span>
+                <span class="meta-episode font-outfit">Episode 365</span>
+            </div>
+            
+            <h1 class="main-title font-serif">蠻牛 <span class="heart-pulse">❤️</span> 寶寶</h1>
+            <p class="intro-sub">這不是一部電影，這是我們正在寫的故事。</p>
+            
+            <button id="startStoryBtn" class="netflix-btn">
+                <i class="fas fa-play"></i> 開始我們的故事
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Content Container (Visible after intro) -->
+    <main id="main-content" class="hidden">
+        <!-- Floating Navigation / Progress Bar -->
+        <nav class="story-nav">
+            <div class="nav-brand">蠻牛 & 寶寶</div>
+            <div class="nav-links">
+                <a href="#section-timer" class="nav-link active" data-target="section-timer">計時器</a>
+                <a href="#section-timeline" class="nav-link" data-target="section-timeline">時光軸</a>
+                <a href="#section-games" class="nav-link" data-target="section-games">闖關遊戲</a>
+                <a href="#section-player" class="nav-link" data-target="section-player">音樂盒</a>
+                <a href="#section-photos" class="nav-link" data-target="section-photos">拍立得</a>
+                <a href="#section-wishes" class="nav-link" data-target="section-wishes">願願牆</a>
+            </div>
+        </nav>
+
+        <!-- Chapter 2: Love Timer -->
+        <section id="section-timer" class="story-section scroll-reveal">
+            <div class="section-container">
+                <div class="card glass-card timer-card">
+                    <span class="card-badge font-outfit">TIMER</span>
+                    <h2 class="section-title">戀愛計時器</h2>
+                    <p class="timer-sub">我們已經一起走了</p>
+                    
+                    <div class="timer-display">
+                        <div class="timer-unit">
+                            <span id="timer-days" class="timer-num">000</span>
+                            <span class="timer-label">DAYS</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-unit">
+                            <span id="timer-hours" class="timer-num">00</span>
+                            <span class="timer-label">HOURS</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-unit">
+                            <span id="timer-minutes" class="timer-num">00</span>
+                            <span class="timer-label">MINUTES</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-unit">
+                            <span id="timer-seconds" class="timer-num">00</span>
+                            <span class="timer-label">SECONDS</span>
+                        </div>
+                    </div>
+                    
+                    <p class="timer-footer">每一秒都值得紀念 🌹</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: Memory Timeline -->
+        <section id="section-timeline" class="story-section scroll-reveal">
+            <div class="section-container">
+                <h2 class="section-title text-center">我們的回憶時光軸</h2>
+                <p class="section-subtitle text-center">一步一步，走成屬於我們的地圖</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">2025 / 07 / 03</span>
+                            <h3 class="timeline-event">我們在一起了 ❤️</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo1.jpg" alt="在一起的第一天" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=2025.07.03+Together'">
+                            </div>
+                            <p class="timeline-text">從這一天開始，我的世界多了一個最重要的人。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">2025 / 07 / 29</span>
+                            <h3 class="timeline-event">第一次吵架又和好 🩹</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo2.jpg" alt="第一次吵架又和好" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=First+Argument'">
+                            </div>
+                            <p class="timeline-text">那天雖然不開心，但我更確定了，未來想陪在我身邊的人是妳。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">2025 / 08 / 14</span>
+                            <h3 class="timeline-event">第一次實體見面 🏪</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo3.jpg" alt="第一次實體見面" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=First+Meet'">
+                            </div>
+                            <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> 台北車站全家前面</p>
+                            <p class="timeline-text">第一次看到妳的時候，我只覺得妳真的超可愛。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Sweet Memories</span>
+                            <h3 class="timeline-event">第一次約會 🍽️</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo4.jpg" alt="第一次約會" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=First+Date'">
+                            </div>
+                            <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> 台北101、薩利亞</p>
+                            <p class="timeline-text">那天其實沒有什麼豪華行程，但因為身邊的人是妳，所以去哪裡都變得特別。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Baseball Game</span>
+                            <h3 class="timeline-event">第一次看棒球 ⚾</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo5.jpg" alt="第一次看棒球" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Baseball+Game'">
+                            </div>
+                            <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> 新莊富邦主場</p>
+                            <p class="timeline-text">第一次一起看棒球，張志豪回歸第一次上場，也是我們拍了很多照片的一天。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Taipei Adventure</span>
+                            <h3 class="timeline-event">第一次探索台北 🗺️</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo6.jpg" alt="第一次探索台北" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Explore+Taipei'">
+                            </div>
+                            <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> 101、信義、中山地下街、台北車站地下街</p>
+                            <p class="timeline-text">一起走過很多地方，也一起留下很多只有我們懂的回憶。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Birthday Gift</span>
+                            <h3 class="timeline-event">一起過生日 🎂</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo7.jpg" alt="一起過生日" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Birthday+Party'">
+                            </div>
+                            <p class="timeline-text">我幫妳準備了耳機，希望它能陪妳聽見更多開心的聲音。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Pure Happiness</span>
+                            <h3 class="timeline-event">最幸福的一天 🥰</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo8.jpg" alt="最幸福的一天" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Simple+Happiness'">
+                            </div>
+                            <p class="timeline-text">我去找妳的那天，沒有特別的景點，沒有特別的安排，只是靜靜躺在妳身邊，那一刻我突然覺得，原來幸福真的可以這麼簡單。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Daily Routine</span>
+                            <h3 class="timeline-event">我們的日常 📱</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo9.jpg" alt="我們的日常" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Daily+Routine'">
+                            </div>
+                            <p class="timeline-text">視訊、打電話、打王者榮耀，好像很普通，卻變成了我每天最期待的事。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: Love Quest Game -->
+        <section id="section-games" class="story-section scroll-reveal">
+            <div class="section-container">
+                <h2 class="section-title text-center">戀愛闖關遊戲</h2>
+                <p class="section-subtitle text-center">通過 7 個戀愛考驗，解鎖我們的甜蜜結局</p>
+                
+                <!-- Game Dashboard / Progress Map -->
+                <div class="game-dashboard glass-card">
+                    <div class="game-progress-bar-container">
+                        <div class="game-progress-fill" id="gameProgressFill"></div>
+                        <div class="game-progress-nodes">
+                            <div class="progress-node active" data-level="1" id="node-1">1</div>
+                            <div class="progress-node" data-level="2" id="node-2">2</div>
+                            <div class="progress-node" data-level="3" id="node-3">3</div>
+                            <div class="progress-node" data-level="4" id="node-4">4</div>
+                            <div class="progress-node" data-level="5" id="node-5">5</div>
+                            <div class="progress-node" data-level="6" id="node-6">6</div>
+                            <div class="progress-node" data-level="7" id="node-7"><i class="fas fa-lock"></i></div>
+                        </div>
+                    </div>
+                    <div class="game-status-text font-outfit" id="gameStatusText">關卡 1/7 : 回憶大考驗</div>
+                </div>
+
+                <!-- Game Container -->
+                <div class="game-container glass-card">
+                    
+                    <!-- Level 1: 回憶大考驗 -->
+                    <div class="game-level active" id="level-1">
+                        <h3 class="level-title"><span class="badge">關卡 1</span> 第一次見面回憶</h3>
+                        <p class="level-desc">我們第一次實體見面在哪裡？</p>
+                        <div class="options-container">
+                            <button class="option-btn" data-answer="A">A. 台北車站全家前面</button>
+                            <button class="option-btn" data-answer="B">B. 西門町</button>
+                            <button class="option-btn" data-answer="C">C. 新莊棒球場</button>
+                            <button class="option-btn" data-answer="D">D. 台北101</button>
+                        </div>
+                        <div class="feedback-msg error-msg hidden" id="feedback-1-err">答錯囉，再想想看第一次見面的場景！</div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-1-success">答對了！寶寶太棒了！🎉</div>
+                    </div>
+
+                    <!-- Level 2: 第一次約會去哪裡 -->
+                    <div class="game-level" id="level-2">
+                        <h3 class="level-title"><span class="badge">關卡 2</span> 第一次約會的地點</h3>
+                        <p class="level-desc">我們第一次約會去了哪裡？</p>
+                        <div class="input-game-container">
+                            <input type="text" id="answer-2" placeholder="請輸入地點 (例如：台北101、薩利亞)" class="game-input">
+                            <p class="hint-text"><i class="far fa-lightbulb"></i> 提示：兩個地點，中間用「、」或空格隔開</p>
+                            <button class="game-submit-btn" id="submit-level-2">送出答案</button>
+                        </div>
+                        <div class="feedback-msg error-msg hidden" id="feedback-2-err">不對喔，提示：高樓與平價義式料理！</div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-2-success">完全正確！那天雖然簡單但好開心！💖</div>
+                    </div>
+
+                    <!-- Level 3: 棒球回憶 -->
+                    <div class="game-level" id="level-3">
+                        <h3 class="level-title"><span class="badge">關卡 3</span> 棒球場的特別驚喜</h3>
+                        <p class="level-desc">我們第一次一起看棒球，是哪一個特別回憶？</p>
+                        <div class="input-game-container">
+                            <input type="text" id="answer-3" placeholder="請輸入回憶內容..." class="game-input">
+                            <p class="hint-text"><i class="far fa-lightbulb"></i> 提示：一位傳奇打者回歸第一次上場</p>
+                            <button class="game-submit-btn" id="submit-level-3">送出答案</button>
+                        </div>
+                        <div class="feedback-msg error-msg hidden" id="feedback-3-err">答案不對喔！提示：主角是「張志豪」！</div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-3-success">太厲害了！就是張志豪回歸第一次上場！⚾</div>
+                    </div>
+
+                    <!-- Level 4: 戀愛賓果 -->
+                    <div class="game-level" id="level-4">
+                        <h3 class="level-title"><span class="badge">關卡 4</span> 我們的回憶賓果</h3>
+                        <p class="level-desc">點擊我們一起做過的事，連成任意「一條線」即可通關！</p>
+                        <div class="bingo-board" id="bingoBoard">
+                            <!-- JS will generate 3x3 cells here -->
+                        </div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-4-success">賓果！我們已經一起做了這麼多棒的事了！🎉</div>
+                    </div>
+
+                    <!-- Level 5: 愛心接接樂 -->
+                    <div class="game-level" id="level-5">
+                        <h3 class="level-title"><span class="badge">關卡 5</span> 愛心接接樂</h3>
+                        <p class="level-desc">接住落下的愛心！30秒內達到 50 分即可過關。</p>
+                        
+                        <div class="catch-game-wrapper">
+                            <div class="game-stats">
+                                <div>得分: <span id="catchScore" class="stat-highlight">0</span> / 50</div>
+                                <div>剩餘時間: <span id="catchTimer" class="stat-highlight">30</span>s</div>
+                            </div>
+                            
+                            <div class="game-canvas-container">
+                                <canvas id="catchCanvas" width="320" height="300"></canvas>
+                                <div id="gameStartOverlay" class="canvas-overlay">
+                                    <button class="netflix-btn" id="startCatchGameBtn">開始挑戰</button>
+                                </div>
+                            </div>
+                            
+                            <p class="hint-text text-center"><i class="fas fa-arrows-alt-h"></i> 左右拖曳或滑動底部花籃接住粉紅愛心！</p>
+                        </div>
+                        <div class="feedback-msg error-msg hidden" id="feedback-5-err">可惜沒拿到 50 分，再來挑戰一次吧！</div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-5-success">太神了！接住了超多愛心！ 💖</div>
+                    </div>
+
+                    <!-- Level 6: 真心話翻牌 -->
+                    <div class="game-level" id="level-6">
+                        <h3 class="level-title"><span class="badge">關卡 6</span> 蠻牛的真心話翻牌</h3>
+                        <p class="level-desc">點擊翻開所有卡片，聆聽我對妳說的真心話。</p>
+                        <div class="card-flip-grid" id="cardFlipGrid">
+                            <!-- JS will generate 8 flip cards -->
+                        </div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-6-success">妳讀完了我全部的真心話，每一句都是真的。❤️</div>
+                    </div>
+
+                    <!-- Level 7: 最終密碼 -->
+                    <div class="game-level" id="level-7">
+                        <h3 class="level-title"><span class="badge font-outfit">FINAL LEVEL</span> 最終密碼</h3>
+                        <p class="level-desc">解鎖最終告白！請輸入我們在一起的日期。</p>
+                        <div class="password-game-container">
+                            <div class="password-display" id="passwordDisplay">--------</div>
+                            
+                            <div class="custom-keypad">
+                                <button class="key-btn" onclick="pressKey('1')">1</button>
+                                <button class="key-btn" onclick="pressKey('2')">2</button>
+                                <button class="key-btn" onclick="pressKey('3')">3</button>
+                                <button class="key-btn" onclick="pressKey('4')">4</button>
+                                <button class="key-btn" onclick="pressKey('5')">5</button>
+                                <button class="key-btn" onclick="pressKey('6')">6</button>
+                                <button class="key-btn" onclick="pressKey('7')">7</button>
+                                <button class="key-btn" onclick="pressKey('8')">8</button>
+                                <button class="key-btn" onclick="pressKey('9')">9</button>
+                                <button class="key-btn clear" onclick="clearKeys()"><i class="fas fa-backspace"></i></button>
+                                <button class="key-btn" onclick="pressKey('0')">0</button>
+                                <button class="key-btn enter" onclick="checkLevel7()"><i class="fas fa-check"></i></button>
+                            </div>
+                            
+                            <p class="hint-text"><i class="far fa-lightbulb"></i> 提示：格式為西元年月日 8 碼 (例如：20250703)</p>
+                        </div>
+                        <div class="feedback-msg error-msg hidden" id="feedback-7-err">密碼不對喔，這一天我們擁有了彼此...</div>
+                        <div class="feedback-msg success-msg hidden" id="feedback-7-success">密碼正確！正在開啟我們的最終告白... ✨</div>
+                    </div>
+
+                </div>
+
+                <!-- Next Level Button Container -->
+                <div class="next-level-container text-center margin-top-lg">
+                    <button id="nextLevelBtn" class="netflix-btn btn-secondary disabled" disabled>
+                        下一關 <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 5: Spotify player -->
+        <section id="section-player" class="story-section scroll-reveal">
+            <div class="section-container">
+                <div class="spotify-card glass-card">
+                    <div class="spotify-header">
+                        <i class="fab fa-spotify spotify-green"></i>
+                        <span class="spotify-header-title">SPOTIFY PLAYLIST</span>
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+
+                    <!-- Vinyl/Album Art Container -->
+                    <div class="album-art-container">
+                        <div class="vinyl-record" id="vinylRecord">
+                            <div class="vinyl-grooves"></div>
+                            <div class="album-art" style="background-image: url('photos/cover.jpg');"></div>
+                            <div class="vinyl-center"></div>
+                        </div>
+                        <!-- Music needle -->
+                        <div class="vinyl-needle" id="vinylNeedle"></div>
+                    </div>
+
+                    <div class="song-info">
+                        <h3 class="song-title">慢慢喜歡你</h3>
+                        <p class="song-artist">蠻牛 to 寶寶</p>
+                    </div>
+
+                    <!-- Hidden Audio element -->
+                    <audio id="loveSongAudio" src="music/slowly_love_you.mp3" preload="auto" loop></audio>
+
+                    <!-- Spotify Progress Timeline -->
+                    <div class="spotify-timeline">
+                        <div class="timeline-labels">
+                            <span class="timeline-label active" data-time="0" id="lbl-meet">00:00 相遇</span>
+                            <span class="timeline-label" data-time="60" id="lbl-together">01:00 在一起</span>
+                            <span class="timeline-label" data-time="120" id="lbl-firstmeet">02:00 見面</span>
+                            <span class="timeline-label" data-time="180" id="lbl-firstdate">03:00 約會</span>
+                            <span class="timeline-label" data-time="240" id="lbl-baseball">04:00 棒球</span>
+                            <span class="timeline-label" data-time="300" id="lbl-anniversary">05:00 一周年</span>
+                        </div>
+                        <div class="spotify-progress-bar" id="spotifyProgressBar">
+                            <div class="spotify-progress-fill" id="spotifyProgressFill"></div>
+                            <div class="spotify-progress-handle"></div>
+                        </div>
+                        <div class="time-duration">
+                            <span id="spotifyCurrentTime">0:00</span>
+                            <span id="spotifyTotalTime">5:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Spotify Controls -->
+                    <div class="spotify-controls">
+                        <button class="control-btn" id="spotifyShuffle" title="隨機播放"><i class="fas fa-random"></i></button>
+                        <button class="control-btn" id="spotifyPrev" title="上一段回憶"><i class="fas fa-step-backward"></i></button>
+                        <button class="control-btn play-pause-btn" id="spotifyPlayPause" title="播放/暫停">
+                            <i class="fas fa-play" id="playIcon"></i>
+                        </button>
+                        <button class="control-btn" id="spotifyNext" title="下一段回憶"><i class="fas fa-step-forward"></i></button>
+                        <button class="control-btn" id="spotifyRepeat" title="重複播放"><i class="fas fa-redo-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 6: Polaroid Photo Wall -->
+        <section id="section-photos" class="story-section scroll-reveal">
+            <div class="section-container">
+                <h2 class="section-title text-center">我們的回憶照片牆</h2>
+                <p class="section-subtitle text-center">點擊照片，重溫當時的溫度與笑容</p>
+                
+                <div class="polaroid-grid" id="polaroidGrid">
+                    <!-- 10 Polaroids will be dynamically loaded here by script.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 8: Future Wishlist -->
+        <section id="section-wishes" class="story-section scroll-reveal">
+            <div class="section-container">
+                <div class="wishlist-card glass-card">
+                    <span class="card-badge font-outfit">WISHLIST</span>
+                    <h2 class="section-title text-center">未來的願望清單</h2>
+                    <p class="section-subtitle text-center">手牽手，一項一項去實現吧</p>
+                    
+                    <div class="wishes-container">
+                        <div class="wish-item">
+                            <input type="checkbox" id="wish-1" class="wish-cb">
+                            <label for="wish-1" class="wish-label">
+                                <span class="custom-cb"><i class="fas fa-check"></i></span>
+                                一起出去旅遊 ✈️
+                            </label>
+                        </div>
+                        <div class="wish-item">
+                            <input type="checkbox" id="wish-2" class="wish-cb">
+                            <label for="wish-2" class="wish-label">
+                                <span class="custom-cb"><i class="fas fa-check"></i></span>
+                                一起去更多地方 🗺️
+                            </label>
+                        </div>
+                        <div class="wish-item">
+                            <input type="checkbox" id="wish-3" class="wish-cb">
+                            <label for="wish-3" class="wish-label">
+                                <span class="custom-cb"><i class="fas fa-check"></i></span>
+                                一起創造更多回憶 📸
+                            </label>
+                        </div>
+                        <div class="wish-item">
+                            <input type="checkbox" id="wish-4" class="wish-cb">
+                            <label for="wish-4" class="wish-label">
+                                <span class="custom-cb"><i class="fas fa-check"></i></span>
+                                一起結婚 💍
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="marriageValidation" class="marriage-validation hidden">
+                        <h3 class="marriage-title">蠻牛 ❤️ 寶寶</h3>
+                        <p class="marriage-valid">✨ 永久有效 ✨</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Photo Lightbox Modal -->
+    <div id="photoLightbox" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="放大照片">
+            <p id="lightboxCaption" class="lightbox-caption"></p>
+        </div>
+        <a class="lightbox-prev" id="lightboxPrevBtn">&#10094;</a>
+        <a class="lightbox-next" id="lightboxNextBtn">&#10095;</a>
+    </div>
+
+    <!-- Chapter 7: Secret Room Modal (Unlocked via 10 easter eggs) -->
+    <div id="secretRoomModal" class="secret-room-modal">
+        <div class="secret-room-content glass-card">
+            <span class="close-secret-room">&times;</span>
+            <div class="secret-room-heart"><i class="fas fa-heart"></i></div>
+            <h2 class="secret-title">解鎖秘密房間 🔓</h2>
+            <div class="secret-text-box">
+                <p class="secret-msg-line">不管過了多久，</p>
+                <p class="secret-msg-line">我最想接起來的電話，</p>
+                <p class="secret-msg-line">還是妳打來的。📞</p>
+            </div>
+            <p class="secret-footer">—— 蠻牛 to 寶寶</p>
+        </div>
+    </div>
+
+    <!-- Final Confession Screen (Unlocked via Game Level 7 or Wedding Wish) -->
+    <div id="confessionScreen" class="confession-screen">
+        <div class="confession-content">
+            <!-- Typewriter text placeholder -->
+            <div id="typewriterText" class="typewriter-text font-serif"></div>
+            
+            <div id="finalBadge" class="final-badge hidden">
+                <h2>一周年快樂</h2>
+                <p class="season-text">Season 1 完結</p>
+                <p class="season-loading">Season 2 Loading...</p>
+            </div>
+            
+            <div id="confessionButtons" class="confession-btns-container hidden">
+                <button class="confession-btn" id="btn-renew-year">續約一年 🤝</button>
+                <button class="confession-btn vip-btn" id="btn-renew-forever">續約一輩子 ♾️</button>
+            </div>
+
+            <!-- VIP Card Screen -->
+            <div id="vipCardModal" class="vip-card-modal hidden">
+                <div class="vip-card glass-card">
+                    <div class="vip-glow"></div>
+                    <div class="vip-header">
+                        <span class="vip-tag">LOVE PASS</span>
+                        <span class="vip-no">NO. 20250703</span>
+                    </div>
+                    <div class="vip-body">
+                        <h3 class="vip-title">永久 VIP 女友資格</h3>
+                        <p class="vip-owner">持卡人：寶寶 ❤️</p>
+                        <p class="vip-signer">簽發人：蠻牛</p>
+                    </div>
+                    <div class="vip-footer">
+                        <span>💖 永久有效 💖</span>
+                        <span>蠻牛 & 寶寶 1st Anniversary</span>
+                    </div>
+                </div>
+                <button class="netflix-btn margin-top-lg" id="closeConfessionBtn">回首頁看看</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
