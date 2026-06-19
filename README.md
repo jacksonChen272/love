@@ -7,9 +7,9 @@
 ## 🎨 網站特色與章節
 
 1. **第一章：電影開場 (Netflix Cinematic Feel)**
-   - 全螢幕黑底 Netflix 風格「N」Logo 動畫拉開序幕。
+   - 全螢幕 Netflix 影集封面風格開場，已改用 images/netflix-logo.svg 修復 N Logo 顯示異常。
    - 劇集標籤：`LOVE STORY` | `Season 1` | `Episode 365` | `蠻牛 ❤️ 寶寶`。
-   - 按下「開始我們的故事」觸發浪漫轉場，並自動播放代表歌曲「慢慢喜歡你」。
+   - 按下「開始我們的故事」會先播放 audio/tudum.mp3 開場音效，再進入主網站並嘗試播放代表歌曲「慢慢喜歡你」。
    
 2. **第二章：戀愛計時器 (Love Timer)**
    - 頂部懸浮極簡磨砂導覽列 (Glassmorphic Sticky Nav)。
@@ -88,3 +88,12 @@ const CONFIG = {
 4. **預覽網站**：
    - 等待約 1 到 2 分鐘，GitHub 會提供一個專屬網址，如：`https://你的帳號.github.io/anniversary/`。
    - 用手機打開這個網址，就可以給寶寶一個滿滿的驚喜囉！🎉
+
+
+## V2 修改紀錄
+- 修復 Netflix N Logo 顯示異常，改用圖片檔。
+- 新增 TUDUM 風格開場音效 audio/tudum.mp3。
+- 導覽列「願願牆」修正為「願望牆」。
+- 重新整理時間軸文字與順序，新增 Chapter 10 一周年。
+- 最終告白改回蠻牛原本的告白內容，並新增系統偵測與續約流程。
+- 新增電影結尾效果：蠻牛 ❤️ 寶寶｜2025/07/03 - Forever｜The End ❤️。

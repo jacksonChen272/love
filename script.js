@@ -213,15 +213,24 @@ function startStory() {
     const introSection = document.getElementById('chapter-intro');
     const mainContent = document.getElementById('main-content');
     
+    // V2：先播放 Netflix 風格 TUDUM 音效（使用者點擊後瀏覽器允許播放）
+    const introSound = document.getElementById('introSound');
+    if (introSound) {
+        introSound.currentTime = 0;
+        introSound.play().catch(err => console.log('開場音效播放被阻擋', err));
+    }
+    
     // 音樂自動播放嘗試（配合使用者點擊，瀏覽器才允許播放）
     const audio = document.getElementById(CONFIG.music.audioId);
     if (audio) {
-        audio.play().then(() => {
-            // 同步更新 Spotify 播放器狀態
-            setSpotifyPlaying(true);
-        }).catch(err => {
-            console.log('音樂自動播放被瀏覽器阻擋，將在播放器中手動啟動', err);
-        });
+        setTimeout(() => {
+            audio.play().then(() => {
+                // 同步更新 Spotify 播放器狀態
+                setSpotifyPlaying(true);
+            }).catch(err => {
+                console.log('音樂自動播放被瀏覽器阻擋，將在播放器中手動啟動', err);
+            });
+        }, 2200);
     }
     
     // 轉場動畫
@@ -936,26 +945,38 @@ window.checkLevel7 = function() {
 // ==========================================================================
 // 12. 最終告白動畫 (Typewriter & VIP Pass)
 // ==========================================================================
-const CONFESSION_TEXT = `寶寶～這是我們的第一個周年。
+const CONFESSION_TEXT = `恭喜妳完成所有挑戰
 
-未來還會有好多好多個一年。
+接下來這段話
+只想給妳看
 
-不管遇到什麼事情，
-都阻擋不了我想和妳在一起。
+寶寶～
+
+這是我們第一個周年。
+
+未來還有好多個一年。
+
+不管遇到什麼事情
+都阻擋不了我跟妳在一起。
 
 妳就是我的唯一。
-我愛妳，寶寶。`;
+
+我愛妳。
+
+寶寶 ❤️`;
 
 function triggerFinalConfession() {
     const screen = document.getElementById('confessionScreen');
     const textEl = document.getElementById('typewriterText');
     const badgeEl = document.getElementById('finalBadge');
     const btnContainer = document.getElementById('confessionButtons');
+    const companionPrompt = document.getElementById('companionPrompt');
     
     // 初始化畫面
     textEl.innerHTML = '';
     badgeEl.classList.add('hidden');
     btnContainer.classList.add('hidden');
+    if (companionPrompt) companionPrompt.classList.add('hidden');
     document.getElementById('vipCardModal').classList.add('hidden');
     
     screen.classList.add('active');
@@ -987,9 +1008,9 @@ function triggerFinalConfession() {
             setTimeout(() => {
                 badgeEl.classList.remove('hidden');
                 
-                // 漸入 續約按鈕
+                // V2：先顯示系統偵測陪伴提示，再讓寶寶選續約
                 setTimeout(() => {
-                    btnContainer.classList.remove('hidden');
+                    if (companionPrompt) companionPrompt.classList.remove('hidden');
                 }, 1000);
             }, 800);
         }
@@ -998,6 +1019,13 @@ function triggerFinalConfession() {
     setTimeout(type, 1000);
     
     // 綁定續約按鈕事件
+    const continueBtn = document.getElementById('btn-continue-love');
+    if (continueBtn) {
+        continueBtn.onclick = () => {
+            if (companionPrompt) companionPrompt.classList.add('hidden');
+            btnContainer.classList.remove('hidden');
+        };
+    }
     document.getElementById('btn-renew-year').addEventListener('click', showVipCard);
     document.getElementById('btn-renew-forever').addEventListener('click', showVipCard);
     document.getElementById('closeConfessionBtn').addEventListener('click', closeConfession);
@@ -1005,7 +1033,21 @@ function triggerFinalConfession() {
 
 function showVipCard() {
     document.getElementById('confessionButtons').classList.add('hidden');
-    document.getElementById('vipCardModal').classList.remove('hidden');
+    const modal = document.getElementById('vipCardModal');
+    modal.classList.remove('hidden');
+
+    // V2：電影結尾效果
+    if (!document.getElementById('endingCredit')) {
+        const credit = document.createElement('div');
+        credit.id = 'endingCredit';
+        credit.className = 'ending-credit';
+        credit.innerHTML = `
+            <div class="names">蠻牛 ❤️ 寶寶</div>
+            <div class="forever">2025/07/03 - Forever</div>
+            <div class="the-end">The End ❤️</div>
+        `;
+        modal.appendChild(credit);
+    }
 }
 
 function closeConfession() {
