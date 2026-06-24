@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 210" role="img" aria-label="Netflix style N logo">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9  0 0 0 0 0  0 0 0 0 0.05  0 0 0 0.9 0" result="redGlow"/>
+      <feMerge><feMergeNode in="redGlow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b00012"/>
+      <stop offset="0.45" stop-color="#ff1025"/>
+      <stop offset="1" stop-color="#b00012"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#glow)">
+    <rect x="18" y="10" width="28" height="190" fill="#e50914"/>
+    <rect x="74" y="10" width="28" height="190" fill="#e50914"/>
+    <polygon points="46,10 74,10 102,200 74,200" fill="url(#red)"/>
+  </g>
+</svg>
