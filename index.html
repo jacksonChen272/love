@@ -210,18 +210,6 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item right">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date font-outfit">Pure Happiness</span>
-                            <h3 class="timeline-event">Chapter 9｜💞 最幸福的一天</h3>
-                            <div class="timeline-img-wrapper">
-                                <img src="photos/photo8.jpg" alt="最幸福的一天" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Simple+Happiness'">
-                            </div>
-                            <p class="timeline-text">沒有特別的景點，<br>沒有特別的安排。<br><br>只是靜靜躺在妳身邊。<br><br>那一刻我突然覺得，<br>原來幸福真的可以這麼簡單。</p>
-                        </div>
-                    </div>
-
                     <div class="timeline-item left">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content glass-card">
@@ -231,6 +219,18 @@
                                 <img src="photos/photo9.jpg" alt="我們的日常" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Daily+Routine'">
                             </div>
                             <p class="timeline-text">最普通的日子，<br>卻是我最喜歡的日子。<br><br>視訊、打電話、王者榮耀，<br>都是我每天最期待的事。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date font-outfit">Pure Happiness</span>
+                            <h3 class="timeline-event">Chapter 9｜💞 最幸福的一天</h3>
+                            <div class="timeline-img-wrapper">
+                                <img src="photos/photo8.jpg" alt="最幸福的一天" onerror="this.src='https://placehold.co/600x400/1a0f0f/ff2a5f?text=Simple+Happiness'">
+                            </div>
+                            <p class="timeline-text">沒有特別的景點，<br>沒有特別的安排。<br><br>只是靜靜躺在妳身邊。<br><br>那一刻我突然覺得，<br>原來幸福真的可以這麼簡單。</p>
                         </div>
                     </div>
 
@@ -465,10 +465,16 @@
         <section id="section-photos" class="story-section scroll-reveal">
             <div class="section-container">
                 <h2 class="section-title text-center">我們的回憶照片牆</h2>
-                <p class="section-subtitle text-center">點擊照片，重溫當時的溫度與笑容</p>
-                
+                <p class="section-subtitle text-center">我先幫你放上精選照片，下面再放全部回憶。</p>
+
+                <h3 class="photo-section-title">精選回憶照片</h3>
+                <div class="polaroid-grid featured-grid" id="featuredPolaroidGrid">
+                    <!-- Featured photos loaded by script.js -->
+                </div>
+
+                <h3 class="photo-section-title all-photos-title">所有照片區</h3>
                 <div class="polaroid-grid" id="polaroidGrid">
-                    <!-- 10 Polaroids will be dynamically loaded here by script.js -->
+                    <!-- All photos loaded by script.js -->
                 </div>
             </div>
         </section>

@@ -6,18 +6,14 @@
 // 1. 全域設定與照片路徑管理
 // ==========================================================================
 const CONFIG = {
-    // 在一起時間：2025年7月3日凌晨0點
     startDate: new Date('2025-07-03T00:00:00'),
-    // 一周年時間
     anniversaryDate: new Date('2026-07-03T00:00:00'),
-    // 代表歌曲
     music: {
         title: '慢慢喜歡你',
         artist: '蠻牛 to 寶寶',
         audioId: 'loveSongAudio'
     },
-    // 照片檔案路徑，集中管理方便替換
-    photos: [
+    featuredPhotos: [
         { path: 'photos/photo1.jpg', caption: '我們在一起了 ❤️' },
         { path: 'photos/photo2.jpg', caption: '第一次吵架又和好 🩹' },
         { path: 'photos/photo3.jpg', caption: '第一次實體見面 🏪' },
@@ -28,6 +24,24 @@ const CONFIG = {
         { path: 'photos/photo8.jpg', caption: '最幸福的一天 🥰' },
         { path: 'photos/photo9.jpg', caption: '我們的日常 📱' },
         { path: 'photos/photo10.jpg', caption: '一周年快樂 💖' }
+    ],
+    galleryPhotos: [
+        { path: 'photos/gallery01.jpg', caption: '回憶照片 01 ❤️' },
+        { path: 'photos/gallery02.jpg', caption: '回憶照片 02 ❤️' },
+        { path: 'photos/gallery03.jpg', caption: '回憶照片 03 ❤️' },
+        { path: 'photos/gallery04.jpg', caption: '回憶照片 04 ❤️' },
+        { path: 'photos/gallery05.jpg', caption: '回憶照片 05 ❤️' },
+        { path: 'photos/gallery06.jpg', caption: '回憶照片 06 ❤️' },
+        { path: 'photos/gallery07.jpg', caption: '回憶照片 07 ❤️' },
+        { path: 'photos/gallery08.jpg', caption: '回憶照片 08 ❤️' },
+        { path: 'photos/gallery09.jpg', caption: '回憶照片 09 ❤️' },
+        { path: 'photos/gallery10.jpg', caption: '回憶照片 10 ❤️' },
+        { path: 'photos/gallery11.jpg', caption: '回憶照片 11 ❤️' },
+        { path: 'photos/gallery12.jpg', caption: '回憶照片 12 ❤️' },
+        { path: 'photos/gallery13.jpg', caption: '回憶照片 13 ❤️' },
+        { path: 'photos/gallery14.jpg', caption: '回憶照片 14 ❤️' },
+        { path: 'photos/gallery15.jpg', caption: '回憶照片 15 ❤️' },
+        { path: 'photos/gallery16.jpg', caption: '回憶照片 16 ❤️' }
     ]
 };
 
@@ -248,7 +262,7 @@ function startStory() {
         
         // 顯示隱藏彩蛋 Widget
         document.getElementById('easterEggWidget').classList.remove('hidden');
-    }, 1000);
+    }, 3200);
 }
 
 // ==========================================================================
@@ -1249,15 +1263,15 @@ function updateSpotifyProgress(seconds) {
 // ==========================================================================
 // 14. 第六章：Polaroid 相片牆動態載入與隨機旋轉
 // ==========================================================================
-function initPolaroidGrid() {
-    const grid = document.getElementById('polaroidGrid');
+function renderPolaroids(gridId, photos, offsetIndex = 0) {
+    const grid = document.getElementById(gridId);
     if (!grid) return;
     grid.innerHTML = '';
-    
-    CONFIG.photos.forEach((photo, index) => {
+
+    photos.forEach((photo, index) => {
         const card = document.createElement('div');
         card.className = 'polaroid-card';
-        card.setAttribute('data-photo-index', index);
+        card.setAttribute('data-photo-index', offsetIndex + index);
         
         // 隨機旋轉傾斜角 (-6deg 到 6deg 之間)，讓拍立得看起來更隨性真實
         const randomRotate = (Math.random() * 12 - 6).toFixed(1);
@@ -1271,11 +1285,16 @@ function initPolaroidGrid() {
         `;
         
         card.addEventListener('click', () => {
-            openLightbox(index);
+            openLightbox(offsetIndex + index);
         });
         
         grid.appendChild(card);
     });
+}
+
+function initPolaroidGrid() {
+    renderPolaroids('featuredPolaroidGrid', CONFIG.featuredPhotos, 0);
+    renderPolaroids('polaroidGrid', CONFIG.galleryPhotos, CONFIG.featuredPhotos.length);
 }
 
 // ==========================================================================
@@ -1331,7 +1350,8 @@ function closeLightbox() {
 }
 
 function updateLightboxContent() {
-    const photo = CONFIG.photos[currentLightboxIndex];
+    const allPhotos = [...CONFIG.featuredPhotos, ...CONFIG.galleryPhotos];
+    const photo = allPhotos[currentLightboxIndex];
     const img = document.getElementById('lightboxImg');
     const caption = document.getElementById('lightboxCaption');
     
@@ -1348,7 +1368,7 @@ function updateLightboxContent() {
 }
 
 function navigateLightbox(dir) {
-    const maxIdx = CONFIG.photos.length;
+    const maxIdx = [...CONFIG.featuredPhotos, ...CONFIG.galleryPhotos].length;
     currentLightboxIndex = (currentLightboxIndex + dir + maxIdx) % maxIdx;
     updateLightboxContent();
 }

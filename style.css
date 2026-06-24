@@ -2176,3 +2176,71 @@ main.visible {
     .netflix-logo-wrap { width: 82px; margin-bottom: 24px; }
     .netflix-meta { gap: 7px; font-size: .74rem; }
 }
+
+/* ==========================================================================
+   FINAL CUSTOM PATCH BY 小知
+   ========================================================================== */
+#chapter-intro {
+    background:
+        linear-gradient(180deg, rgba(0,0,0,.70), rgba(0,0,0,.92)),
+        radial-gradient(circle at center, rgba(229,9,20,.20), transparent 45%),
+        url('images/cover.jpg') center/cover no-repeat;
+}
+
+#chapter-intro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,.55) 72%, #000 100%);
+    z-index: -1;
+}
+
+.netflix-logo-wrap {
+    width: 95px;
+    margin: 0 auto 28px;
+    animation: netflixLogoPop 1.4s ease both;
+}
+
+.netflix-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 28px rgba(255,0,0,.85));
+}
+
+@keyframes netflixLogoPop {
+    0% { opacity: 0; transform: scale(.7); filter: blur(6px); }
+    55% { opacity: 1; transform: scale(1.08); filter: blur(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.photo-section-title {
+    margin: 26px 0 16px;
+    font-size: 1.25rem;
+    color: var(--text-main);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.photo-section-title::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 10px auto 0;
+    background: linear-gradient(90deg, transparent, var(--pink-primary), transparent);
+}
+
+.featured-grid {
+    margin-bottom: 38px;
+}
+
+.all-photos-title {
+    color: var(--pink-secondary);
+}
+
+@media (min-width: 768px) {
+    .section-container { max-width: 860px; }
+    .featured-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
