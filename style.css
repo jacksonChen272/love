@@ -2088,7 +2088,7 @@ main.visible {
     background-image:
         linear-gradient(to bottom, rgba(0,0,0,.72), rgba(0,0,0,.92)),
         radial-gradient(circle at center, rgba(229,9,20,.18), transparent 55%),
-        url('photos/cover.jpg');
+        url('cover.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(2px);
@@ -2184,7 +2184,7 @@ main.visible {
     background:
         linear-gradient(180deg, rgba(0,0,0,.70), rgba(0,0,0,.92)),
         radial-gradient(circle at center, rgba(229,9,20,.20), transparent 45%),
-        url('images/cover.jpg') center/cover no-repeat;
+        url('cover.jpg') center/cover no-repeat;
 }
 
 #chapter-intro::before {
